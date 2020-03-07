@@ -1,0 +1,17 @@
+
+
+- hosts: slave1
+  tasks:
+    - name: Printing date and time 
+      command: date
+      register: date
+
+    - debug: var=date.stdout
+
+    - name: Installing htop in slave1 server
+      yum:
+        name=htop
+        state=present
+      register: htop
+
+    - debug: var=htop.stdout_lines
