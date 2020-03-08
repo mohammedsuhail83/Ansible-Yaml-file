@@ -1,0 +1,13 @@
+
+
+- hosts: slave1
+  name: List all elements
+  vars:
+     fruits:
+        - Orange
+        - Apple
+        - Mango
+  tasks:
+     - name: getting elements in list
+       debug:
+           msg: "{{ fruits }}"
