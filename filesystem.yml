@@ -1,0 +1,34 @@
+
+
+- hosts: slave2
+  name: creating a volume the mounting it to a fs
+  become: yes
+  tasks:
+    - name: create a lvg module
+      lvg:
+        pvs: /dev/xvdf1
+        vg: gv1
+
+    - name: create lvol module
+      lvol:
+        vg: gv1
+        lv: vl1
+        size: "160M"
+
+    - name: creating a FS
+      filesystem:
+              fstype: ext4
+              dev: /dev/gv1/vl1
+
+    - name: creating a directory to mount
+      file:
+        path: /tmp/mount1
+        state: directory
+        mode: 0755
+
+    - name: mounting to created directory
+      mount:
+              fstype: ext4
+              path: /tmp/mount1
+              src: /dev/gv1/vl1
+              state: mounted 
