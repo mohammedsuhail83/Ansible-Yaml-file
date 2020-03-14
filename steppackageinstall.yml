@@ -1,0 +1,16 @@
+
+
+
+- name: installing packages with the help of with_items
+  hosts: slave1
+  become: yes
+  tasks:
+    - name: installing step by step packages
+      yum: 
+        name: "{{ item.name }}"
+        state: present
+      with_items:
+        - { name: nano }
+        - { name: wget }
+        - { name: gedit } 
+       

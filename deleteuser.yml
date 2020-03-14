@@ -1,0 +1,12 @@
+
+
+
+- name: delete the existing user
+  hosts: slave2
+  become: yes
+  tasks:
+    - name: delete user
+      user:
+              name: test1
+              state: absent
+              remove: yes
