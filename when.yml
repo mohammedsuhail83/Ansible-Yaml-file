@@ -1,0 +1,10 @@
+
+
+
+- hosts: slave1
+  name: checking when module
+  become: yes
+  tasks:
+    - name: installing tree package
+      yum: name=tree state=present
+      when: ansible_os_family == "RedHat"
