@@ -1,0 +1,17 @@
+
+
+- name: copying the file to slaves
+  hosts: slave1
+  become: yes
+  user: msuhail
+  tasks:
+    - name: copy the file from master to slave
+      tags: sync-pull
+      synchronize:
+              src: /tmp/bootloader
+              dest: /tmp/
+              mode: pull
+      delegate_to: slave2.compute.internal
+      register: syncfile
+      run_once: yes
+              

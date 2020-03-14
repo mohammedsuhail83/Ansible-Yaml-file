@@ -1,0 +1,9 @@
+
+
+- hosts: slave1
+  become: yes
+  tasks: 
+    - name: trying to install htop
+      yum:
+       name=htop
+       state=installed

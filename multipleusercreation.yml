@@ -1,0 +1,15 @@
+
+
+- name: creating multiple users
+  hosts: slave2.compute.internal
+  become: yes
+  tasks:
+     - name: creating multiple tasks with the help of loop
+       user:
+         name: "{{ item.username }}"
+         uid: "{{ item.uid }}"
+         group: "{{item.group }}"
+       loop:
+           - { username: test1, uid: 1014, group: "msuhail" }
+           - { username: test2, uid: 1015, group: "wheel" }
+           - { username: test3, uid: 1016, group: "msuhail" }

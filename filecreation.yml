@@ -1,0 +1,13 @@
+
+
+- name: creating a file
+  hosts: slave1
+  become: yes
+  tasks:
+    - name: creating a file with the help of touch
+      file:      
+        path: /tmp/boot
+        state: directory
+        owner: testuser1
+        mode: 0500
+
