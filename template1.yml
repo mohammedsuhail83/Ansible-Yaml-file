@@ -1,0 +1,13 @@
+
+
+
+- hosts: slave1
+  name: creating a template and pushing the variable into slave1
+  become: yes
+  vars:
+          env: STAGING
+  tasks:
+    - name: create template
+      template:
+          src: profile.j2
+          dest: /home/msuhail/templateexamples

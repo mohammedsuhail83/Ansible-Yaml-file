@@ -1,0 +1,22 @@
+
+
+- hosts: slave1
+  name: adding a group and then user adding into that group
+  become: yes
+  tasks:
+    - name: creating a group
+      group:
+        name: newansible
+        state: present
+
+    - name: adding users into that group
+      user:
+         name: "{{ item.name }}"
+         uid: "{{ item.uid }}"
+         group: "{{ item.group }}"
+         comment: "{{item.comment }}"
+         shell: "{{ item.shell }}"
+      loop:
+              - { name: ansible1, uid: 1021, group: "newansible", comment: "New User", shell: /bin/bash }
+              - { name: ansible2, uid: 1022, group: "newansible", comment: "New User", shell: /bin/nologin }
+              - { name: ansible3, uid: 1023, group: "newansible", comment: "New User", shell: /bin/bash }

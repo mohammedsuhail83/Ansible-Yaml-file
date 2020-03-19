@@ -1,0 +1,7 @@
+
+
+- name: copying a text and templates into remote
+  hosts: slave2
+  become: yes
+  roles:
+          - demo

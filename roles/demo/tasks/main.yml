@@ -1,0 +1,12 @@
+---
+# tasks file for demo
+
+- name: copy template
+  template:
+          src: texttest.j2
+          dest: /home/msuhail
+
+- name: copy a text file
+  copy:
+          src: texttest.txt
+          dest: /home/msuhail

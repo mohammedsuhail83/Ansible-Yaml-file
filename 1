@@ -1,0 +1,13 @@
+
+
+
+- name: creating a customize http file
+  hosts: slave1
+  become: yes
+  vars:
+     serveradmin: root@example.com
+  tasks:
+    - name: copy a customize http file
+      template:
+          src: http.j2
+          dest: /home/msuhail/templateexamples/httpd.conf

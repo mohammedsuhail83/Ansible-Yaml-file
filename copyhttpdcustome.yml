@@ -1,0 +1,17 @@
+
+- name: pushing customized httpd file to remote machine users
+  hosts: slave1
+  become: yes
+  vars:
+    admin: msuhail@instart.com
+  tasks: 
+    - name: push to remote users
+      template:
+         src: http.j2
+         dest: /home/{{ item }}/httpd.conf
+      loop:
+        - user1
+        - user2
+        - user3
+        - user4
+        - user5

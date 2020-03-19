@@ -1,0 +1,7 @@
+
+
+- name: installing httpd using roles
+  hosts: slave2
+  become: yes
+  roles:
+          - httpd

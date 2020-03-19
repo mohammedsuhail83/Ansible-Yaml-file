@@ -1,0 +1,25 @@
+- name: Creating 5 users and pushing the jinja data to them
+  hosts: slave1
+  become: yes
+  tasks:
+    - name: creating 5 users
+      user:
+         name: "{{ item }}"
+         state: present
+      loop:
+         - user1
+         - user2 
+         - user3
+         - user4
+         - user5
+    - name: sharing jinja data to them
+      template:
+         src: setup.j2
+         dest: /home/{{ item }}/setup
+         #loop: "{{ item }}"
+      loop:
+         - user1
+         - user2
+         - user3
+         - user4
+         - user5
